@@ -1,88 +1,58 @@
-# Tailscale
+# Tailscale One-Line Installer and Exit Node Configurator for Linux 🚀
 
-https://tailscale.com
+This repository provides a convenient one-liner script to install and configure Tailscale on Linux systems, including setting up an exit node. It also includes some Linux optimization commands to improve the system's performance. Tested and confirmed working in Iran using MCI and Wi-Fi networks (not Irancell).
 
-Private WireGuard® networks made easy
+## Table of Contents
 
-## Overview
+- [Installation](#installation)
+- [Optimization](#optimization)
+- [Configuration](#configuration)
+- [Connecting to the Exit Node](#connecting-to-the-exit-node)
+- [Compatibility](#compatibility)
 
-This repository contains the majority of Tailscale's open source code.
-Notably, it includes the `tailscaled` daemon and
-the `tailscale` CLI tool. The `tailscaled` daemon runs on Linux, Windows,
-[macOS](https://tailscale.com/kb/1065/macos-variants/), and to varying degrees
-on FreeBSD and OpenBSD. The Tailscale iOS and Android apps use this repo's
-code, but this repo doesn't contain the mobile GUI code.
+## Installation 💻
 
-Other [Tailscale repos](https://github.com/orgs/tailscale/repositories) of note:
+To install Tailscale and configure an exit node on your Linux machine, run the following command:
 
-* the Android app is at https://github.com/tailscale/tailscale-android
-* the Synology package is at https://github.com/tailscale/tailscale-synology
-* the QNAP package is at https://github.com/tailscale/tailscale-qpkg
-* the Chocolatey packaging is at https://github.com/tailscale/tailscale-chocolatey
-
-For background on which parts of Tailscale are open source and why,
-see [https://tailscale.com/opensource/](https://tailscale.com/opensource/).
-
-## Using
-
-We serve packages for a variety of distros and platforms at
-[https://pkgs.tailscale.com](https://pkgs.tailscale.com/).
-
-## Other clients
-
-The [macOS, iOS, and Windows clients](https://tailscale.com/download)
-use the code in this repository but additionally include small GUI
-wrappers. The GUI wrappers on non-open source platforms are themselves
-not open source.
-
-## Building
-
-We always require the latest Go release, currently Go 1.20. (While we build
-releases with our [Go fork](https://github.com/tailscale/go/), its use is not
-required.)
-
-```
-go install tailscale.com/cmd/tailscale{,d}
+```bash
+curl -sSL https://raw.githubusercontent.com/mehrshud/tailscale/master/install.sh | sudo bash
 ```
 
-If you're packaging Tailscale for distribution, use `build_dist.sh`
-instead, to burn commit IDs and version info into the binaries:
+## Optimization ⚡
 
+The script includes some Linux optimization commands to improve the system's performance. These optimizations include:
+
+- Enabling TCP BBR congestion control
+- Adjusting system file limits and kernel parameters for better network performance
+- Disabling Transparent Huge Pages (THP) for reduced CPU usage
+
+## Configuration 🛠️
+
+To configure the exit node, you need to set some environment variables before running the installation script. Below is an example of how to set these variables:
+
+```bash
+export EXIT_NODE_NAME="my-exit-node"
+export EXIT_NETS="0.0.0.0/0, ::/0"
+curl -sSL https://raw.githubusercontent.com/mehrshud/tailscale/master/install.sh | sudo bash
 ```
-./build_dist.sh tailscale.com/cmd/tailscale
-./build_dist.sh tailscale.com/cmd/tailscaled
-```
 
-If your distro has conventions that preclude the use of
-`build_dist.sh`, please do the equivalent of what it does in your
-distro's way, so that bug reports contain useful version information.
+- `EXIT_NODE_NAME`: The name of your exit node.
+- `EXIT_NETS`: The CIDR ranges for the exit node (default is to allow all traffic).
 
-## Bugs
+## Connecting to the Exit Node 🌐
 
-Please file any issues about this code or the hosted service on
-[the issue tracker](https://github.com/tailscale/tailscale/issues).
+After setting up the exit node, you can connect to it using Tailscale clients on different platforms. Instructions for each platform can be found in the [Tailscale documentation](https://tailscale.com/kb/). Make sure to set the exit node IP address to the configured exit node on your server.
 
-## Contributing
+## Compatibility 🌍
 
-PRs welcome! But please file bugs. Commit messages should [reference
-bugs](https://docs.github.com/en/github/writing-on-github/autolinked-references-and-urls).
+This script has been tested and confirmed working in Iran using MCI and Wi-Fi networks. Note that it does not work with Irancell.
 
-We require [Developer Certificate of
-Origin](https://en.wikipedia.org/wiki/Developer_Certificate_of_Origin)
-`Signed-off-by` lines in commits.
+## License
 
-See `git log` for our commit message style. It's basically the same as
-[Go's style](https://github.com/golang/go/wiki/CommitMessage).
+This project is licensed under the terms of the MIT License.
 
-## About Us
+## Support
 
-[Tailscale](https://tailscale.com/) is primarily developed by the
-people at https://github.com/orgs/tailscale/people. For other contributors,
-see:
+If you encounter any issues or have any questions, please create an issue in this repository.
 
-* https://github.com/tailscale/tailscale/graphs/contributors
-* https://github.com/tailscale/tailscale-android/graphs/contributors
-
-## Legal
-
-WireGuard is a registered trademark of Jason A. Donenfeld.
+---
