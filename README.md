@@ -1,5 +1,12 @@
 # Tailscale One-Line Installer and Exit Node Configurator for Linux 🚀
 
+[![CI](https://github.com/mehrshud/tailscale/actions/workflows/ci.yml/badge.svg)](https://github.com/mehrshud/tailscale/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Go](https://img.shields.io/badge/language-Go-blue)]()
+[![Stars](https://img.shields.io/github/stars/mehrshud/tailscale?style=social)](https://github.com/mehrshud/tailscale)
+
+
+
 This repository provides a convenient one-liner script to install and configure Tailscale on Linux systems, including setting up an exit node. It also includes some Linux optimization commands to improve the system's performance. Tested and confirmed working in Iran using MCI and Wi-Fi networks (not Irancell).
 
 ## Table of Contents
